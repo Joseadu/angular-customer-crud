@@ -13,6 +13,8 @@ import { StatusComponent } from './status/status.component';
 // import { LoginComponent } from './login/login.component';
 // import { AccessRoutingModule } from './access/access-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UserComponent } from './user/user.component';
+import { MaterialModule } from 'src/Material-Module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     AboutComponent,
     ContactComponent,
     AddcontactComponent,
-    StatusComponent
+    StatusComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     // LoginComponent,
     // AccessRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

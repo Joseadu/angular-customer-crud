@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { UserService } from 'src/app/Service/user.service';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private route:Router) { }
+  constructor(private route:Router, private service:UserService) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +19,8 @@ export class RegisterComponent implements OnInit {
   RedirectLogin() {
     this.route.navigate(['login']);
   }
+
+  respdata:any;
 
   reativeform = new FormGroup({
     userid: new FormControl('', Validators.required),
@@ -26,6 +30,17 @@ export class RegisterComponent implements OnInit {
   });
 
   SaveUser() {
-    console.log(this.reativeform.value.name)
+    if (this.reativeform.valid) {
+      this.service.Registration(this.reativeform.value).subscribe(item => {
+        this.respdata = item;
+        if(this.respdata.result=='pass'){
+          alertify.success('Registerted successfully please contact admin for activation');
+          this.RedirectLogin();
+        }else{
+          alertify.error('Failed, try again');
+        }
+      });
+    }
+
   }
 }
