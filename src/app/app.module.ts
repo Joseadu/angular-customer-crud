@@ -12,9 +12,10 @@ import { AddcontactComponent } from './addcontact/addcontact.component';
 import { StatusComponent } from './status/status.component';
 // import { LoginComponent } from './login/login.component';
 // import { AccessRoutingModule } from './access/access-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { MaterialModule } from 'src/Material-Module';
+import { TokenInterceptorService } from './Service/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,13 @@ import { MaterialModule } from 'src/Material-Module';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { UserModel } from '../Model/UserModel';
+import { UserMasterService } from '../Service/user-master.service';
+// import { UserService } from '../Service/user.service';
 
 export interface PeriodicElement {
   name: string;
@@ -27,11 +32,34 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:UserMasterService) { }
 
   ngOnInit(): void {
+    this.GetAllUser();
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  @ViewChild(MatPaginator) paginator !:MatPaginator;
+
+  UserDetail: any;
+  DataSource: any;
+
+  GetAllUser() {
+    this.service.GetAllUser().subscribe(item => {
+      this.UserDetail = item;
+
+      this.DataSource = new MatTableDataSource<UserModel>(this.UserDetail);
+      this.DataSource.paginator = this.paginator;
+    });
+  }
+
+  displayedColumns: string[] = ['userid', 'name', 'email', 'isActive', 'role', 'action'];
+  // dataSource = ELEMENT_DATA;
+
+  FunctionEdit(userid: any) {
+
+  }
+
+  FunctionDelete(userid: any) {
+
+  }
 }
