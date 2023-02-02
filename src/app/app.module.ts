@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { MaterialModule } from 'src/Material-Module';
 import { TokenInterceptorService } from './Service/token-interceptor.service';
+import { ModalpopupComponent } from './modalpopup/modalpopup.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { TokenInterceptorService } from './Service/token-interceptor.service';
     ContactComponent,
     AddcontactComponent,
     StatusComponent,
-    UserComponent
+    UserComponent,
+    ModalpopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { TokenInterceptorService } from './Service/token-interceptor.service';
     // AccessRoutingModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

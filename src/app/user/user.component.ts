@@ -4,6 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UserModel } from '../Model/UserModel';
 import { UserMasterService } from '../Service/user-master.service';
 // import { UserService } from '../Service/user.service';
+import * as alertify from 'alertifyjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 
 export interface PeriodicElement {
   name: string;
@@ -32,7 +35,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class UserComponent implements OnInit {
 
-  constructor(private service:UserMasterService) { }
+  constructor(private service:UserMasterService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.GetAllUser();
@@ -46,6 +49,7 @@ export class UserComponent implements OnInit {
   GetAllUser() {
     this.service.GetAllUser().subscribe(item => {
       this.UserDetail = item;
+      console.log(this.UserDetail);
 
       this.DataSource = new MatTableDataSource<UserModel>(this.UserDetail);
       this.DataSource.paginator = this.paginator;
@@ -56,10 +60,20 @@ export class UserComponent implements OnInit {
   // dataSource = ELEMENT_DATA;
 
   FunctionEdit(userid: any) {
-
+    this.dialog.open(ModalpopupComponent, {
+      width: '400px',
+      data: {
+        userid: userid,
+      }
+    });
   }
 
   FunctionDelete(userid: any) {
-
+    alertify.confirm("Remove user", "Do you want to delete this user?", () => {
+      this.service.RemoveUser(userid).subscribe(item => {
+        this.GetAllUser();
+        alertify.success("User removed successfully");
+      });
+    }, function(){});
   }
 }

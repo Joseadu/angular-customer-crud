@@ -16,8 +16,8 @@ export class UserMasterService {
     return this.http.get<UserModel>(this.apiurl);
   }
 
-  GetUserById(userid:any) {
-    return this.http.get(this.apiurl + '/' + userid);
+  GetUserById(UserId:any) {
+    return this.http.get(this.apiurl + '/' + UserId);
   }
 
   RemoveUser(userid:any) {
@@ -25,6 +25,6 @@ export class UserMasterService {
   }
 
   UpdateUser(inputdata:any) {
-    return this.http.post(this.apiurl + 'ActivateUser', inputdata);
+    return this.http.post(this.apiurl + '/ActivateUser', inputdata);
   }
 }
