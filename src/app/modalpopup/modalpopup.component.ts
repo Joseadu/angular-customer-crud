@@ -17,6 +17,7 @@ export class ModalpopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.GetAllRole();
     // console.log(this.data);
     this.GetExistData(this.data.userid);
   }
@@ -45,12 +46,11 @@ export class ModalpopupComponent implements OnInit {
     }
   }
 
-  // GetAllRole() {
-  //   this.service.GetAllRoles().subscribe(item => {
-  //     this.roledata = item;
-  //     console.log(this.roledata);
-  //   });
-  // }
+  GetAllRole() {
+    this.service.GetAllRoles().subscribe(item => {
+      this.roledata = item;
+    });
+  }
 
   GetExistData(userid: any) {
     this.service.GetUserById(userid).subscribe(item => {

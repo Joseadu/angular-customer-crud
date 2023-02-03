@@ -12,7 +12,7 @@ export class AddcontactComponent implements OnInit {
 
   ngOnInit(): void {
     const routeid = this.route.snapshot.paramMap.get('id');
-    console.log(routeid);
+    // console.log(routeid);
   }
 
 }

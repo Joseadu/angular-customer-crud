@@ -7,6 +7,7 @@ import { UserMasterService } from '../Service/user-master.service';
 import * as alertify from 'alertifyjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
+import { HttpClient } from '@angular/common/http';
 
 export interface PeriodicElement {
   name: string;
@@ -35,7 +36,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class UserComponent implements OnInit {
 
-  constructor(private service:UserMasterService, private dialog:MatDialog) { }
+  constructor(private service:UserMasterService, private dialog:MatDialog, private http:HttpClient) { }
 
   ngOnInit(): void {
     this.GetAllUser();
@@ -45,11 +46,12 @@ export class UserComponent implements OnInit {
 
   UserDetail: any;
   DataSource: any;
+  UserRole: any;
 
   GetAllUser() {
     this.service.GetAllUser().subscribe(item => {
       this.UserDetail = item;
-      console.log(this.UserDetail);
+      // console.log(this.UserDetail);
 
       this.DataSource = new MatTableDataSource<UserModel>(this.UserDetail);
       this.DataSource.paginator = this.paginator;
@@ -60,11 +62,14 @@ export class UserComponent implements OnInit {
   // dataSource = ELEMENT_DATA;
 
   FunctionEdit(userid: any) {
-    this.dialog.open(ModalpopupComponent, {
+    let popup = this.dialog.open(ModalpopupComponent, {
       width: '400px',
       data: {
         userid: userid,
       }
+    });
+    popup.afterClosed().subscribe(item => {
+      this.GetAllUser();
     });
   }
 
