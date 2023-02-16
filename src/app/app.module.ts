@@ -16,7 +16,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { MaterialModule } from 'src/Material-Module';
 import { TokenInterceptorService } from './Service/token-interceptor.service';
-import { ModalpopupComponent } from './modalpopup/modalpopup.component';
+import { ModalpopupComponent } from './modalpopup/RegisterModalPopup/modalpopup.component';
+import { MenuComponent } from './menu/menu.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductModalPopupComponent } from './modalpopup/product-modal-popup/product-modal-popup.component';
 
 
 @NgModule({
@@ -29,6 +32,9 @@ import { ModalpopupComponent } from './modalpopup/modalpopup.component';
     StatusComponent,
     UserComponent,
     ModalpopupComponent,
+    MenuComponent,
+    ProductsComponent,
+    ProductModalPopupComponent,
   ],
   imports: [
     BrowserModule,

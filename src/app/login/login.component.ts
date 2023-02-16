@@ -4,6 +4,7 @@ import { MaterialModule } from 'src/Material-Module';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../Service/user.service';
 import { Router } from '@angular/router';
+import { UserMasterService } from '../Service/user-master.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service:UserService, private route:Router) { }
+  constructor(private service:UserService, private MasterService: UserMasterService, private route:Router) { }
 
   ngOnInit(): void {
     localStorage.clear();
+    // this.GetExistData(this.userid: any);
   }
 
   respdata:any;
+  isActive: any;
 
   ProceedLogin(logindata:any) {
     if(logindata.valid) {
@@ -35,9 +38,5 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-  }
-
-  RedirectRegister() {
-    this.route.navigate(['access/register']);
   }
 }

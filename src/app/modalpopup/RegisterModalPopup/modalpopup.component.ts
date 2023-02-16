@@ -2,7 +2,7 @@ import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
-import { UserMasterService } from '../Service/user-master.service';
+import { UserMasterService } from '../../Service/user-master.service';
 import * as alertify from 'alertifyjs';
 
 @Component({
@@ -18,7 +18,7 @@ export class ModalpopupComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetAllRole();
-    // console.log(this.data);
+    console.log(this.data);
     this.GetExistData(this.data.userid);
   }
 
@@ -55,6 +55,7 @@ export class ModalpopupComponent implements OnInit {
   GetExistData(userid: any) {
     this.service.GetUserById(userid).subscribe(item => {
       this.editdata = item;
+      // console.log(this.editdata.isActive);
       if (this.editdata != null) {
         this.updateform.setValue({
           userid: this.editdata.userid,

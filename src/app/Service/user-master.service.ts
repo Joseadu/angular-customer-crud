@@ -12,16 +12,16 @@ export class UserMasterService {
 
   apiurl = 'https://localhost:44321/api/UserMaster';
 
-  GetAllUser(): Observable<UserModel> {
-    return this.http.get<UserModel>(this.apiurl);
+  GetAllUser(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(this.apiurl);
   }
 
   GetUserById(UserId:any) {
     return this.http.get(this.apiurl + '/' + UserId);
   }
 
-  RemoveUser(userid:any) {
-    return this.http.delete(this.apiurl + '/' + userid);
+  RemoveUser(UserId:any) {
+    return this.http.delete(this.apiurl + '/' + UserId);
   }
 
   UpdateUser(inputdata:any) {

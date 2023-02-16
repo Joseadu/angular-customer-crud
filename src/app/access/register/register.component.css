@@ -12,6 +12,12 @@
   padding: 24px;
 }
 
-.mat-card-content {
+.register-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+mat-card-content {
   margin-top: 24px;
 }

@@ -16,11 +16,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  RedirectLogin() {
-    this.route.navigate(['login']);
-  }
-
   respdata:any;
+
+  RedirectUser() {
+    this.route.navigate(['user']);
+  }
 
   reativeform = new FormGroup({
     userid: new FormControl('', Validators.required),
@@ -34,13 +34,12 @@ export class RegisterComponent implements OnInit {
       this.service.Registration(this.reativeform.value).subscribe(item => {
         this.respdata = item;
         if(this.respdata.result=='pass'){
-          alertify.success('Registerted successfully please contact admin for activation');
-          this.RedirectLogin();
+          alertify.success('User registerted successfully');
+          this.RedirectUser();
         }else{
           alertify.error('Failed, try again');
         }
       });
     }
-
   }
 }

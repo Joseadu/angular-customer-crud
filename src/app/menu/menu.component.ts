@@ -1,20 +1,20 @@
 import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserMasterService } from './Service/user-master.service';
-import { UserService } from './Service/user.service';
+import { UserService } from '../Service/user.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.css']
 })
-export class AppComponent implements DoCheck{
+export class MenuComponent implements DoCheck {
 
-  constructor (private route:Router, private userService: UserService, private userMasterService: UserMasterService) { }
+  constructor (private route:Router, private userService: UserService) { }
 
   isMenuVisible = true;
   isAdmin = false;
   userIsActive: any;
+  isUserorAdmin: any;
 
   ngDoCheck(): void {
 
@@ -32,6 +32,13 @@ export class AppComponent implements DoCheck{
       this.isAdmin = false;
     }
 
+    if(this.userService.GetRole() == 'admin' || this.userService.GetRole() == 'staff') {
+      this.isUserorAdmin = true;
+    } else {
+      this.isUserorAdmin = false;
+    }
+
 
   }
+
 }

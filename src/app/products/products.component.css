@@ -1,0 +1,13 @@
+@import '../../styles.css';
+
+table {
+  width: 100%;
+}
+
+.products-container {
+  margin-top: 60px;
+}
+
+.products-details {
+  margin-top: 24px;
+}

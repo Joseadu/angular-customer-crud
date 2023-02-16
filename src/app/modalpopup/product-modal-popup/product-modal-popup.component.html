@@ -1,0 +1,26 @@
+<h2>Update Product</h2>
+<form
+  class="modalpopup-form-container"
+  [formGroup]="updateform"
+  (ngSubmit)="SaveProduct()"
+>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Product code</mat-label>
+    <input matInput formControlName="code"/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Product name</mat-label>
+    <input matInput formControlName="name" value="name.name"/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Product price</mat-label>
+    <input matInput formControlName="amount"/>
+  </mat-form-field>
+
+  <div class="modalpopup-buttons-container">
+    <button mat-raised-button color="primary">Update</button> |
+    <a mat-raised-button mat-dialog-close color="accent">Close</a>
+  </div>
+</form>

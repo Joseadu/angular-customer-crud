@@ -1,0 +1,50 @@
+<div class="secondary-content">
+  <div class="products-container">
+    <h2>Product Details</h2>
+    <button mat-raised-button color="primary">Register product</button>
+
+    <div class="products-details">
+      <table style="width: 800px;" mat-table [dataSource]="DataSource" class="">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef> Code </th>
+          <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Amount (€) </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+
+        Symbol Column
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="EditProduct(element.code)">Edit</button> |
+            <button mat-raised-button color="accent" (click)="DeleteProduct(element.code)">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [length]="100"
+                [pageSize]="25"
+                [pageSizeOptions]="[5, 25, 50, 100]"
+                aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

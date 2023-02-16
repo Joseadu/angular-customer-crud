@@ -14,6 +14,7 @@ export class UserService {
   }
 
   IsLoggedIn() {
+    this.GetRole();
     return localStorage.getItem('token') != null;
   }
 

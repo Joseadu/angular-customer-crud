@@ -6,28 +6,30 @@ import { UserMasterService } from '../Service/user-master.service';
 // import { UserService } from '../Service/user.service';
 import * as alertify from 'alertifyjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
+import { ModalpopupComponent } from '../modalpopup/RegisterModalPopup/modalpopup.component';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+// export interface PeriodicElement {
+//   name: string;
+//   position: number;
+//   weight: number;
+//   symbol: string;
+// }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+// const ELEMENT_DATA: PeriodicElement[] = [
+//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+// ];
 
 @Component({
   selector: 'app-user',
@@ -36,17 +38,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class UserComponent implements OnInit {
 
-  constructor(private service:UserMasterService, private dialog:MatDialog, private http:HttpClient) { }
+  constructor(private service:UserMasterService, private dialog:MatDialog, private route: Router) { }
 
   ngOnInit(): void {
     this.GetAllUser();
+    this.GetAllUserss();
   }
 
-  @ViewChild(MatPaginator) paginator !:MatPaginator;
+  @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   UserDetail: any;
   DataSource: any;
-  UserRole: any;
+  UserIsActive: any;
 
   GetAllUser() {
     this.service.GetAllUser().subscribe(item => {
@@ -55,6 +58,14 @@ export class UserComponent implements OnInit {
 
       this.DataSource = new MatTableDataSource<UserModel>(this.UserDetail);
       this.DataSource.paginator = this.paginator;
+    });
+  }
+
+  GetAllUserss() {
+    this.service.GetAllUser().subscribe(item => {
+      this.UserDetail = item;
+      // console.log(item)
+      // return item;
     });
   }
 
@@ -80,5 +91,9 @@ export class UserComponent implements OnInit {
         alertify.success("User removed successfully");
       });
     }, function(){});
+  }
+
+  RedirectRegister() {
+    this.route.navigate(['access/register'])
   }
 }
