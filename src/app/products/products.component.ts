@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProductModel } from '../Model/ProductModel';
 import { ProductModalPopupComponent } from '../modalpopup/product-modal-popup/product-modal-popup.component';
 import * as alertify from 'alertifyjs';
+import { CreateProductModalPopupComponent } from '../modalpopup/create-product-modal-popup/create-product-modal-popup.component';
 
 // export interface PeriodicElement {
 //   name: string;
@@ -76,5 +77,12 @@ export class ProductsComponent implements OnInit {
         alertify.success("Product removed successfully");
       });
     }, function(){});
+  }
+
+  RegisterProduct() {
+    this.dialog.open(CreateProductModalPopupComponent, {
+      width: '400px',
+
+    });
   }
 }

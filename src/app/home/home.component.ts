@@ -12,30 +12,30 @@ export class HomeComponent implements OnInit {
   constructor(private ProductService: ProductService, private route: Router) { }
 
   ngOnInit(): void {
-    // this.GetUserIsActive();
-    // this.GetProduct();
+    this.GetProducts();
+    this.GetProductsHome();
   }
 
   ProductsDetails: any;
+  ProductList: any = [{}];
+  Last4Products: any = [{}];
 
-  // GetProduct() {
-  //   this.ProductService.GetProducts().subscribe(items => {
-  //     this.ProductsDetails = items;
-  //     console.log(this.ProductsDetails);
-  //   });
-  // }
+  GetProducts() {
+    this.ProductService.GetProducts().subscribe(items => {
+      this.ProductList = items;
+      // console.log(this.ProductsList);
+    });
+  }
 
-  // GetUserIsActive() {
-  //   this.service.GetAllUser().subscribe(item => {
-  //     for (let index = 0; index < item.length; index++) {
-  //       console.log(item[index].isActive)
-  //       if(item[index].isActive === true) {
-  //         this.route.navigate(['home']);
-  //       } else {
-  //         alert("Ask an admin to activate your account")
-  //         this.route.navigate(['login']);
-  //       }
-  //     }
-  //   });
-  // }
+  GetProductHome: any = [{}];
+
+  GetProductsHome() {
+    this.ProductService.GetProducts().subscribe(items => {
+      this.GetProductHome = items;
+      // console.log(this.GetProductHome);
+
+      this.Last4Products = this.GetProductHome.slice(Math.max(this.GetProductHome.length - 4, 0));
+      this.Last4Products.reverse();
+    });
+  }
 }

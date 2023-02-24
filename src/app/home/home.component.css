@@ -235,6 +235,7 @@ section {
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  padding: 24px;
 }
 
 .work-thumb .work-info:after {
@@ -244,7 +245,17 @@ section {
   right: 0px;
   bottom: 0px;
   content: "";
-  background: #ce3232;
+  background: #00f260; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #0575e6,
+    #00f260
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #0575e6,
+    #00f260
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   opacity: 0;
   transition: 0.5s;
 }
@@ -253,7 +264,7 @@ section {
   opacity: 0.9;
 }
 
-.work-thumb .work-info h3,
+.work-thumb .work-info h3, .work-thumb .work-info h4,
 .work-thumb .work-info small {
   transform: translateY(100%);
   opacity: 0;
@@ -273,7 +284,7 @@ section {
   margin-top: 3px;
 }
 
-.work-thumb:hover .work-info h3,
+.work-thumb:hover .work-info h3, .work-thumb:hover .work-info h4,
 .work-thumb:hover .work-info small {
   transform: translateY(0px);
   opacity: 1;
@@ -355,7 +366,7 @@ section {
     padding: 75px 25px;
   }
 
-  .blog-info h3 {
+  .blog-info h3, h4 {
     margin: 0;
     padding: 8px 0 6px 0;
     text-transform: capitalize;

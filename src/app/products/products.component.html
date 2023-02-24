@@ -1,7 +1,7 @@
 <div class="secondary-content">
   <div class="products-container">
     <h2>Product Details</h2>
-    <button mat-raised-button color="primary">Register product</button>
+    <button mat-raised-button color="primary" (click)="RegisterProduct()">Register product</button>
 
     <div class="products-details">
       <table style="width: 800px;" mat-table [dataSource]="DataSource" class="">

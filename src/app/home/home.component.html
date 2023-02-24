@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div class="col-md-3 col-sm-6">
+      <div style="padding: 12px;" class="col-md-3 col-sm-6" *ngFor="let i of Last4Products">
         <!-- WORK THUMB -->
         <div class="work-thumb">
           <a
@@ -56,80 +56,22 @@
             />
 
             <div class="work-info">
-              <h3>Lorem Ipsum</h3>
-              <small>Lorem</small>
+              <h4>{{i.name}}</h4>
+              <small>{{i.amount}}€</small>
             </div>
           </a>
         </div>
       </div>
 
-      <div class="col-md-3 col-sm-6">
-        <!-- WORK THUMB -->
-        <div class="work-thumb">
-          <a
-            target="_blank"
-            href="../../assets/images/work-image2.jpg"
-            class="image-popup"
-          >
-            <img
-              src="../../assets/images/work-image2.jpg"
-              class="img-responsive"
-              alt="Work"
-            />
 
-            <div class="work-info">
-              <h3>Lorem Ipsum</h3>
-              <small>Lorem</small>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-sm-6">
-        <!-- WORK THUMB -->
-        <div class="work-thumb">
-          <a
-            target="_blank"
-            href="../../assets/images/work-image3.jpg"
-            class="image-popup"
-          >
-            <img
-              src="../../assets/images/work-image3.jpg"
-              class="img-responsive"
-              alt="Work"
-            />
-
-            <div class="work-info">
-              <h3>Lorem Ipsum</h3>
-              <small>Lorem</small>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-sm-6">
-        <!-- WORK THUMB -->
-        <div class="work-thumb">
-          <a
-            target="_blank"
-            href="../../assets/images/work-image4.jpg"
-            class="image-popup"
-          >
-            <img
-              src="../../assets/images/work-image4.jpg"
-              class="img-responsive"
-              alt="Work"
-            />
-
-            <div class="work-info">
-              <h3>Lorem Ipsum</h3>
-              <small>Lorem</small>
-            </div>
-          </a>
-        </div>
-      </div>
     </div>
   </div>
+
+  <!-- <div *ngFor="let i of ProductList">
+    <p>{{i.name}}</p>
+  </div>
+
+  <hr> -->
 </section>
 
 

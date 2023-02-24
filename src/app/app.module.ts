@@ -20,6 +20,7 @@ import { ModalpopupComponent } from './modalpopup/RegisterModalPopup/modalpopup.
 import { MenuComponent } from './menu/menu.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductModalPopupComponent } from './modalpopup/product-modal-popup/product-modal-popup.component';
+import { CreateProductModalPopupComponent } from './modalpopup/create-product-modal-popup/create-product-modal-popup.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ProductModalPopupComponent } from './modalpopup/product-modal-popup/pro
     MenuComponent,
     ProductsComponent,
     ProductModalPopupComponent,
+    CreateProductModalPopupComponent,
   ],
   imports: [
     BrowserModule,

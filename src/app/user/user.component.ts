@@ -50,6 +50,7 @@ export class UserComponent implements OnInit {
   UserDetail: any;
   DataSource: any;
   UserIsActive: any;
+  roledata: any;
 
   GetAllUser() {
     this.service.GetAllUser().subscribe(item => {
@@ -95,5 +96,11 @@ export class UserComponent implements OnInit {
 
   RedirectRegister() {
     this.route.navigate(['access/register'])
+  }
+
+  GetAllRole() {
+    this.service.GetAllRoles().subscribe(item => {
+      this.roledata = item;
+    });
   }
 }

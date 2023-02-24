@@ -24,6 +24,10 @@ export class ProductService {
     return this.http.get(this.apiurl + '/' + code);
   }
 
+  RegisterProduct(inputdata: any) {
+    return this.http.post(this.apiurl, inputdata)
+  }
+
   RemoveProduct(productid:any) {
     return this.http.delete(this.apiurl + '/' + productid);
   }

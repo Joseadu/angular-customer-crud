@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
     if (this.reativeform.valid) {
       this.service.Registration(this.reativeform.value).subscribe(item => {
         this.respdata = item;
+        console.log(this.respdata)
         if(this.respdata.result=='pass'){
           alertify.success('User registerted successfully');
           this.RedirectUser();
